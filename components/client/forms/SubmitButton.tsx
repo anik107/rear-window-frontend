@@ -6,21 +6,24 @@ import { cn } from "@/lib/utils";
 
 interface SubmitButtonProps {
   children: React.ReactNode;
+  onclick?: () => void;
+  isSubmitting?: boolean;
   className?: string;
   loadingText?: string;
 }
 
 export function SubmitButton({
+  onclick,
+  isSubmitting,
   children,
   className,
   loadingText = "Loading...",
 }: SubmitButtonProps) {
-  const { formState } = useFormContext();
-  const { isSubmitting } = formState;
 
   return (
     <Button
       type="submit"
+      onClick={onclick}
       disabled={isSubmitting}
       className={cn(
         "w-full h-11 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors",
