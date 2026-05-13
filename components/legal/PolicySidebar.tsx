@@ -14,7 +14,7 @@ export default function PolicySidebar({
   onSectionClick,
 }: PolicySidebarProps) {
   return (
-    <aside className="hidden lg:block w-64 flex-shrink-0">
+    <aside className="w-full flex-shrink-0">
       <nav className="sticky top-8 bg-blue-600 rounded-lg p-4">
         <ul className="space-y-1">
           {sections.map((section) => (
