@@ -11,6 +11,11 @@ import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const hideOnRoutes = new Set(["/log-in", "/sign-up"]);
+
+  if (hideOnRoutes.has(pathname)) {
+    return null;
+  }
 
   const handleSearch = (value: string) => {
     console.log("Search:", value);
