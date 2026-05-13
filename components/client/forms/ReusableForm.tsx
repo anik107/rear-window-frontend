@@ -9,13 +9,13 @@ import {
   DefaultValues,
   SubmitHandler,
 } from "react-hook-form";
-import { z, ZodTypeAny } from "zod";
+import type { ZodType } from "zod";
 import { ReactNode, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface ReusableFormProps<
-  TSchema extends ZodTypeAny,
-  TFormValues extends FieldValues = z.infer<TSchema> & FieldValues
+  TFormValues extends FieldValues,
+  TSchema extends ZodType<TFormValues, any, any>
 > {
   schema: TSchema;
   defaultValues: DefaultValues<TFormValues>;
@@ -26,8 +26,8 @@ interface ReusableFormProps<
 }
 
 export default function ReusableForm<
-  TSchema extends ZodTypeAny,
-  TFormValues extends FieldValues = z.infer<TSchema> & FieldValues
+  TFormValues extends FieldValues,
+  TSchema extends ZodType<TFormValues, any, any>
 >({
   schema,
   defaultValues,
@@ -35,11 +35,11 @@ export default function ReusableForm<
   children,
   className,
   mode = "onBlur",
-}: ReusableFormProps<TSchema, TFormValues>) {
+}: ReusableFormProps<TFormValues, TSchema>) {
   const [serverError, setServerError] = useState<string | null>(null);
 
   const form = useForm<TFormValues, unknown, TFormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema as ZodType<TFormValues, any, any>),
     defaultValues,
     mode,
   });
