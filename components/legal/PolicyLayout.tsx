@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import HamburgerMenuIcon from "../ui/hamburgerMenu";
+import HamburgerMenuIcon from "../ui/hamburger-menu";
 import { PolicyPageData } from "@/types/legal";
 import PolicySidebar from "./PolicySidebar";
 import PolicySection from "./PolicySection";
